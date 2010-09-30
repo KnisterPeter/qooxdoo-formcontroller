@@ -2,6 +2,7 @@ qx.Class.define("binding.FormController2", {
   extend : qx.data.controller.Form,
   construct: function(model, target) {
     this.base(arguments, model, target);
+    // FIXME: Hack around the qooxdoo class model for overriding private methods
     this.__setUpBinding = this.setUpUnibinding;
   },
   members : {
@@ -32,6 +33,9 @@ qx.Class.define("binding.FormController2", {
       }
     },
 
+    /**
+     * Note: Currently this does only work with value settable items
+     */
     reset: function() {
       var items = this.getTarget().getItems();
       for (var name in items) {
@@ -40,6 +44,9 @@ qx.Class.define("binding.FormController2", {
       }
     },
 
+    /**
+     * Note: Currently this does only work with value settable items
+     */
     commit: function() {
       var items = this.getTarget().getItems();
       for (var name in items) {
